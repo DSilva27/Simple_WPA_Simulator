@@ -1,7 +1,7 @@
 import MDAnalysis as mda
 import numpy as np
 import jax.numpy as jnp
-from jaxtyping import ArrayLike
+from jaxtyping import Array
 
 
 def pdb_parser_all_atom_(fname: str) -> np.array:
@@ -196,7 +196,7 @@ def pdb_parser_cg_(fname: str) -> np.array:
     return struct_info
 
 
-def pdb_parser(input_file: str, mode: str) -> ArrayLike:
+def pdb_parser(input_file: str, mode: str) -> Array:
     """
     Parses a pdb file and returns an atomic model of the protein. The atomic model is a 5xN array, where N is the number of atoms or residues in the protein. The first three rows are the x, y, z coordinates of the atoms or residues. The fourth row is the atomic number of the atoms or the density of the residues. The fifth row is the variance of the atoms or residues, which is the resolution of the cryo-EM map divided by pi squared.
 
@@ -209,7 +209,7 @@ def pdb_parser(input_file: str, mode: str) -> ArrayLike:
 
     Returns
     -------
-    struct_info : ArrayLike
+    struct_info : Array
         The atomic model of the protein.
     """
 
