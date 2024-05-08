@@ -7,16 +7,11 @@ This is a simple weak-phase approximation simulator for cryo-EM particles from a
 
 ## Installation 
 
-1. I HEAVILY recommend creating a virtual environment before installing this package. This package requires poetry, which could create issues if not isollated from the rest of your system through a virtual environment. Make sure the python version is at least 3.9 and that you have pip installed. 
+1. I recommend creating a virtual environment before installing this package. Make sure the python version is at least 3.9 and that you have pip installed. 
 
-2. Install [Poetry](https://python-poetry.org/docs/). Poetry is also available in [PyPi](https://pypi.org/project/poetry/).
+2. Install package `pip install .`. Add the flag `-e` is you want to install it in editable mode.
 
-3. This package can run with both GPU and CPU.
-
-    * To Run with CPU install with `poetry install --with cpu`
-    * To Run with GPU install with `poetry install --with gpu`
-
-4. Packages that will be installed
+3. Packages that will be installed
 
     * Numpy
     * Matplotlib
@@ -25,8 +20,8 @@ This is a simple weak-phase approximation simulator for cryo-EM particles from a
     * Natsort
     * Starfile
     * Mrcfile
-    * Jax (cpu or gpu)
-    * Torch (cpu or gpu)
+    * Jax
+    * Torch
 
 
 ## Usage
@@ -41,4 +36,4 @@ The default value for `overwrite` is 0, which will make the command raise an err
 
 Note: this will only work if you have the environment where you installed the package is activated.
 
-You can run 
+You can run `generate_stack --help` to get details on the entries of the config files, and the command line arguments for this script.
