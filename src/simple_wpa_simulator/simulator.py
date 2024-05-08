@@ -5,7 +5,7 @@
 import numpy as np
 import jax
 import jax.numpy as jnp
-from jax.typing import ArrayLike
+from jaxtyping import ArrayLike
 from functools import partial
 from typing import Union
 import mrcfile

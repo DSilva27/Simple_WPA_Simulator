@@ -1,7 +1,7 @@
 import MDAnalysis as mda
 import numpy as np
 import jax.numpy as jnp
-from jax.typing import ArrayLike
+from jaxtyping import ArrayLike
 
 
 def pdb_parser_all_atom_(fname: str) -> np.array:

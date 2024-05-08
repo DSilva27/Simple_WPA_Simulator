@@ -17,6 +17,9 @@ classifiers = [
 urls = {repository = "https://github.com/DSilva27/Simple_WPA_Simulator" }
 
 dependencies = [
+    "jax",
+    "jaxlib",
+    "jaxtyping",
     "numpy >=1.26.4",
     "matplotlib >=3.8.4",
     "mdanalysis >=2.7.0",
@@ -24,7 +27,7 @@ dependencies = [
     "pandas >=2.2.2",
     "starfile >=0.5.7",
     "mrcfile >=1.5.0",
-    "torch"
+    "torch",
 ]
 
 [project.optional-dependencies]
