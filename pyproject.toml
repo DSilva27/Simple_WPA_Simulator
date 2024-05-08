@@ -1,22 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "simple-wpa-simulator"
-description = "Simulates images from structures using the WPA method for single particle cryo-EM. Writes a starfile at the end with CTF information and angles."
+dynamic = ["version"]
 authors = [{ name = "David Silva Sanchez", email = "david.silva@yale.edu" }]
+description = "Simulates images from structures using the WPA method for single particle cryo-EM. Writes a starfile at the end with CTF information and angles."
 readme = "README.md"
 requires-python = ">=3.9"
 # license = {file = "LICENSE"}
 keywords = ["jax", "cryo-EM", "electron-microscopy"]
 classifiers = [
-    # "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research",
-    # "License :: OSI Approved :: GNU Lesser General Public License v2 (LGPLv2)",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
 urls = {repository = "https://github.com/DSilva27/Simple_WPA_Simulator" }
-dynamic = ["version"]
+
 dependencies = [
     "numpy >=1.26.4",
     "matplotlib >=3.8.4",
@@ -31,17 +30,14 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest"]
 
-[build-system]
-requires = ["setuptools>=61.0", "setuptools_scm>=6.2"]
-build-backend = "setuptools.build_meta"
+[project.scripts]
+generate_stack = "simple_wpa_simulator.commands.generate_stack:main"
+
 
 [tool.setuptools]
 include-package-data = true
 zip-safe = false
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["simple_wpa_simulator*"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -52,6 +48,3 @@ testpaths = [
 
 [tool.pyright]
 exclude = ["build/**"]
-
-[tool.black]
-line-length = 90
