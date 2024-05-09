@@ -7,6 +7,7 @@ from numbers import Number
 import numpy as np
 import textwrap
 
+
 def load_config(config_file):
     """
     Load a json config file
@@ -33,13 +34,10 @@ def load_config(config_file):
 
 
 def parse_config(config):
-
     req_keys = {
         "experiment_name": str,
-        "mode": str,
         "particles_per_model": (Number, list),
         "box_size": Number,
-        "resolution": Number,
         "pixel_size": Number,
         "defocus_u": (Number, list),
         "working_dir": str,
@@ -79,14 +77,8 @@ def parse_config(config):
 
 def validate_config_generator(config):
 
-    if config["mode"] not in ["all-atom", "resid", "cg"]:
-        raise ValueError("Invalid mode, must be 'all-atom', 'resid' or 'cg'")
-
     if config["box_size"] <= 0:
         raise ValueError("Box size must be greater than 0")
-
-    if config["resolution"] <= 0:
-        raise ValueError("Resolution must be greater than 0")
 
     if config["pixel_size"] <= 0:
         raise ValueError("Pixel size must be greater than 0")
@@ -116,14 +108,12 @@ def validate_config_generator(config):
 
 
 def help_config_generator():
-
-    string = textwrap.dedent("""\
+    string = textwrap.dedent(
+        """\
         Required keys in config file:
             experiment_name: name of the experiment, used for logging
-            mode: detail level of the atomic models (all-atom, resid, cg)
             particles_per_model: number of particles per model as a list [n_particles_1, n_particles_2, ...]
             box_size: box size of the particles
-            resolution: resolution of the particles
             pixel_size: pixel size of the particles
             defocus_u: defocus_u of the particles (Angstrom)
             working_dir: path where the atomic models (pdb files) are located
@@ -143,6 +133,7 @@ def help_config_generator():
             spherical_aberr: spherical_aberr of the particles (mm) (default: 2.7 mm)
             seed: seed for parameter generation (default: 0)
  
-    """)
+    """
+    )
 
     return string
