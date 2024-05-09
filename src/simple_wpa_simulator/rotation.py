@@ -64,10 +64,12 @@ def calc_rot_matrix(angles):
     ca, cb, cg = jnp.cos(alpha), jnp.cos(beta), jnp.cos(gamma)
     sa, sb, sg = jnp.sin(alpha), jnp.sin(beta), jnp.sin(gamma)
 
-    rot_matrix = jnp.array([
-        [ca*cb*cg - sa*sg, -ca*cb*sg - sa*cg, ca*sb],
-        [sa*cb*cg + ca*sg, -sa*cb*sg + ca*cg, sa*sb],
-        [-sb*cg, sb*sg, cb]
-    ])
+    rot_matrix = jnp.array(
+        [
+            [ca * cb * cg - sa * sg, -ca * cb * sg - sa * cg, ca * sb],
+            [sa * cb * cg + ca * sg, -sa * cb * sg + ca * cg, sa * sb],
+            [-sb * cg, sb * sg, cb],
+        ]
+    )
 
     return rot_matrix.T

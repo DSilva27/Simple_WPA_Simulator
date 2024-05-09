@@ -31,7 +31,6 @@ def add_args(parser):
 
 
 def load_configfile(config_fname, overwrite):
-
     config = load_config(config_fname)
 
     if not os.path.exists(config["output_path"]):
@@ -50,7 +49,6 @@ def load_configfile(config_fname, overwrite):
 
 
 def load_models(config):
-
     logging.info("Checking that the models exist...")
     logging.info(f"Looking for models {config['models_fname']}")
 
@@ -84,31 +82,25 @@ def load_models(config):
     model_0.atoms.write(path_ref_model)
     logging.info(f"Reference model written to {path_ref_model}")
 
-    if config["mode"] == "resid":
-        atom_list_filter = "protein and name CA"
-
-    elif config["mode"] == "all-atom":
-        atom_list_filter = "protein and not name H*"
-
-    elif config["mode"] == "cg":
-        atom_list_filter = "protein and name CA"
+    atom_list_filter = "protein and not name H*"
 
     for i in range(0, n_models):
-
         model_path = os.path.join(config["working_dir"], models_fname[i])
         uni = mda.Universe(model_path)
         align.alignto(uni, model_0, select=atom_list_filter, weights="mass")
         models.append(uni.select_atoms(atom_list_filter).positions.T)
 
     models = np.array(models)
-    struct_info = pdb_parser(model_path, mode=config["mode"])
+    struct_info = pdb_parser(model_path)
 
     return models, struct_info
 
 
 def main():
-
-    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, epilog=help_config_generator())
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=help_config_generator(),
+    )
     parser = add_args(parser)
     args = parser.parse_args()
 
